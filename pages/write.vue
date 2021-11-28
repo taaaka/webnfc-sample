@@ -2,16 +2,16 @@
 import { ref } from "vue";
 
 const text = ref('');
-const isReadReady = ref(false);
+const isWriteReady = ref(false);
 
 const handleStandbyNFC = async () => {
-  isReadReady.value = true
+  isWriteReady.value = true
   console.log(text.value)
 
   const reader = new NDEFReader();
   await reader.write(text.value);
 
-  isReadReady.value = false;
+  isWriteReady.value = false;
 }
 
 </script>
@@ -21,7 +21,7 @@ const handleStandbyNFC = async () => {
     <h1>WebNFC Example (Writer)</h1>
     <hr>
     <input type="text" v-model="text">
-    <button @click="handleStandbyNFC">Read NFC</button>
-    <p v-if="isReadReady">Read Stanby...</p>
+    <button @click="handleStandbyNFC">Write NFC</button>
+    <p v-if="isWriteReady">Write Stanby...</p>
   </div>
 </template>
